@@ -1,22 +1,40 @@
-import { keys } from "./input.js";
+import { TILE_SIZE } from "./constants.js";
+import { input } from "./input.js";
 
 export class Player {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-    this.speed = 4;
-    this.size = 20;
+  constructor(startingRow, startingCol) {
+    this.row = startingRow;
+    this.col = startingCol;
+    this.size = TILE_SIZE;
   }
 
-  update() {
-    if (keys["KeyW"] || keys["ArrowUp"]) this.y -= this.speed;
-    if (keys["KeyS"] || keys["ArrowDown"]) this.y += this.speed;
-    if (keys["KeyA"] || keys["ArrowLeft"]) this.x -= this.speed;
-    if (keys["KeyD"] || keys["ArrowRight"]) this.x += this.speed;
+  update(maze) {
+
+    const action = input.actions.shift();
+    if (!action) return;
+
+    let nextRow = this.row;
+    let nextCol = this.col;
+
+    if (action === "up") nextRow -= 1;
+    if (action === "down") nextRow += 1;
+    if (action === "left") nextCol -= 1;
+    if (action === "right") nextCol += 1;
+
+    // collision check
+    if (!maze.isWall(nextRow, nextCol)) {
+      this.row = nextRow;
+      this.col = nextCol;
+    }
   }
 
   draw(ctx) {
-    ctx.fillStyle = "black";
-    ctx.fillRect(this.x, this.y, this.size, this.size);
+    ctx.fillStyle = "red";
+    ctx.fillRect(
+      this.col * TILE_SIZE,
+      this.row * TILE_SIZE,
+      this.size,
+      this.size,
+    );
   }
 }

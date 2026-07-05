@@ -1,9 +1,27 @@
-export const keys = {};
+export const input = {
+  actions: []
+};
 
-window.addEventListener("keydown", (event) => {
-    keys[event.code] = true;
-});
+window.addEventListener("keydown", (e) => {
+  switch (e.code) {
+    case "KeyW":
+    case "ArrowUp":
+      input.actions.push("up");
+      break;
 
-window.addEventListener("keyup", (event) => {
-    keys[event.code] = false;
+    case "KeyS":
+    case "ArrowDown":
+      input.actions.push("down");
+      break;
+
+    case "KeyA":
+    case "ArrowLeft":
+      input.actions.push("left");
+      break;
+
+    case "KeyD":
+    case "ArrowRight":
+      input.actions.push("right");
+      break;
+  }
 });
