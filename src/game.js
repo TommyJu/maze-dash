@@ -1,5 +1,6 @@
 import { Player } from "./player.js";
 import { Maze } from "./maze.js";
+import { MAZE_SIZE } from "./constants.js";
 
 export class Game {
     constructor(canvas, ctx) {
@@ -8,6 +9,7 @@ export class Game {
 
         this.player = new Player(0, 0);
         this.maze = new Maze();
+        this.maze.generate(MAZE_SIZE);
     }
 
     update() {
