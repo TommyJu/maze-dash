@@ -22,9 +22,21 @@ export class Maze {
   }
   generate() {}
 
-  isWall(row, col) {
-    if (this.maze[row][col] === 1) { return true; }
-    else { return false; }
+  isValidPosition(row, col) {
+    let maxRow = this.maze.length;
+    let maxCol = this.maze[0].length;
+
+    if (
+      row >= maxRow ||
+      col >= maxCol ||
+      row < 0 ||
+      col < 0 ||
+      this.maze[row][col] === 1
+    ) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   draw(ctx) {

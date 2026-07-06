@@ -22,7 +22,7 @@ export class Player {
     if (action === "right") nextCol += 1;
 
     // collision check
-    if (!maze.isWall(nextRow, nextCol)) {
+    if (maze.isValidPosition(nextRow, nextCol)) {
       this.row = nextRow;
       this.col = nextCol;
     }
