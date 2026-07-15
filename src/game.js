@@ -1,24 +1,37 @@
 import { Player } from "./player.js";
 import { Maze } from "./maze.js";
-import { MAZE_SIZE } from "./constants.js";
-import { MAZE_START_X, MAZE_START_Y } from "./constants.js";
+import { input } from "./input.js";
 
 export class Game {
     constructor(canvas, ctx) {
         this.canvas = canvas;
         this.ctx = ctx;
 
-        this.player = new Player(MAZE_START_Y, MAZE_START_X);
-        this.maze = new Maze(MAZE_SIZE);
+        this.player = new Player();
+        this.maze = new Maze();
     }
 
     handleGameWon() {
         alert("Maze Complete! 🎉");
-        this.player = new Player(MAZE_START_Y, MAZE_START_X);
-        this.maze = new Maze(MAZE_SIZE);
+        this.player.resetPosition();
+        this.maze.createMaze();
+    }
+
+    handleGameCommand(gameCommand) {
+        if (gameCommand === "reset") {
+            this.player.resetPosition();
+        }
+        if (gameCommand === "generateNewMaze") {
+            this.maze.createMaze();
+            this.player.resetPosition();
+        }
     }
 
     update() {
+        const gameCommand = input.gameCommands.shift();
+        this.handleGameCommand(gameCommand);
+
+
         this.player.update(this.maze);
         if (this.maze.isMazeComplete(this.player)) {
             this.handleGameWon();

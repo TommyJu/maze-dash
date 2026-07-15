@@ -1,10 +1,15 @@
 import { TILE_SIZE } from "./constants.js";
 import generateMaze from "./mazeGenerationAlgorithm.js";
 import { MAZE_FINISH_X, MAZE_FINISH_Y } from "./constants.js";
+import { MAZE_SIZE } from "./constants.js";
 
 export class Maze {
-  constructor(mazeSize) {
-    this.maze = generateMaze(mazeSize);
+  constructor() {
+    this.maze = generateMaze(MAZE_SIZE);
+  }
+
+  createMaze() {
+    this.maze = generateMaze(MAZE_SIZE);
   }
 
   isValidPosition(row, col) {

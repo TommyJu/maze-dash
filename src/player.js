@@ -1,11 +1,16 @@
-import { TILE_SIZE } from "./constants.js";
+import { MAZE_FINISH_Y, TILE_SIZE, MAZE_START_X, MAZE_START_Y } from "./constants.js";
 import { input } from "./input.js";
 
 export class Player {
-  constructor(startingRow, startingCol) {
-    this.row = startingRow;
-    this.col = startingCol;
+  constructor() {
+    this.row = MAZE_START_Y;
+    this.col = MAZE_START_X;
     this.size = TILE_SIZE;
+  }
+
+  resetPosition() {
+    this.row = MAZE_START_Y;
+    this.col = MAZE_START_X;
   }
 
   update(maze) {

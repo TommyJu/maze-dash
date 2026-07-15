@@ -1,8 +1,10 @@
 export const input = {
-  actions: []
+  actions: [],
+  gameCommands: []
 };
 
 window.addEventListener("keydown", (e) => {
+  e.preventDefault();
   switch (e.code) {
     case "KeyW":
     case "ArrowUp":
@@ -23,5 +25,12 @@ window.addEventListener("keydown", (e) => {
     case "ArrowRight":
       input.actions.push("right");
       break;
+    
+    case "KeyR":
+      input.gameCommands.push("reset");
+      break;
+    
+      case "Escape":
+        input.gameCommands.push("generateNewMaze");
   }
 });
