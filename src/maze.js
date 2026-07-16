@@ -1,15 +1,29 @@
-import { TILE_SIZE } from "./constants.js";
+import { TILE_SIZE, DEFAULT_MAZE_SIZE } from "./constants.js";
 import generateMaze from "./mazeGenerationAlgorithm.js";
-import { MAZE_FINISH_X, MAZE_FINISH_Y } from "./constants.js";
-import { MAZE_SIZE } from "./constants.js";
 
 export class Maze {
-  constructor() {
-    this.maze = generateMaze(MAZE_SIZE);
+  constructor(size = DEFAULT_MAZE_SIZE) {
+    this.createMaze(size);
   }
 
-  createMaze() {
-    this.maze = generateMaze(MAZE_SIZE);
+  createMaze(size) {
+    this.maze = generateMaze(size);
+    this.size = size;
+  }
+
+  get width() {
+    return this.size * TILE_SIZE;
+  }
+
+  get height() {
+    return this.size * TILE_SIZE;
+  }
+
+  get finish() {
+    return {
+      row: this.size - 1,
+      col: this.size - 2,
+    };
   }
 
   isValidPosition(row, col) {
@@ -29,11 +43,9 @@ export class Maze {
   }
 
   isMazeComplete(player) {
-    if (player.row === MAZE_FINISH_Y && player.col === MAZE_FINISH_X) {
-      return true;
-    } else {
-      return false;
-    }
+    const finish = this.finish;
+
+    return player.row === finish.row && player.col === finish.col;
   }
 
   draw(ctx) {

@@ -1,4 +1,4 @@
-  import { MAZE_START_X, MAZE_START_Y, MAZE_FINISH_X, MAZE_FINISH_Y } from "./constants.js";
+  
   
   /*
     Generates a matrix-representation of a maze using the following backtracking algorithm:
@@ -58,8 +58,10 @@
     }
 
     // Create ending and opening
-    maze[MAZE_START_Y][MAZE_START_X] = 0;
-    maze[MAZE_FINISH_Y][MAZE_FINISH_X] = 0;
+    
+
+    maze[1][0] = 0;
+    maze[mazeSize - 1][mazeSize - 2] = 0;
     
     return maze;
   }

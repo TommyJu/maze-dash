@@ -1,20 +1,19 @@
-import { MAZE_FINISH_Y, TILE_SIZE, MAZE_START_X, MAZE_START_Y } from "./constants.js";
+import {
+  TILE_SIZE
+} from "./constants.js";
 import { input } from "./input.js";
 
 export class Player {
   constructor() {
-    this.row = MAZE_START_Y;
-    this.col = MAZE_START_X;
-    this.size = TILE_SIZE;
+    this.resetPosition();
   }
 
   resetPosition() {
-    this.row = MAZE_START_Y;
-    this.col = MAZE_START_X;
+    this.row = 1;
+    this.col = 0;
   }
 
   update(maze) {
-
     const action = input.actions.shift();
     if (!action) return;
 
@@ -34,12 +33,14 @@ export class Player {
   }
 
   draw(ctx) {
-    ctx.fillStyle = "red";
-    ctx.fillRect(
-      this.col * TILE_SIZE,
-      this.row * TILE_SIZE,
-      this.size,
-      this.size,
+    ctx.font = `${TILE_SIZE}px serif`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    ctx.fillText(
+      "😀",
+      this.col * TILE_SIZE + TILE_SIZE / 2,
+      this.row * TILE_SIZE + TILE_SIZE / 2,
     );
   }
 }

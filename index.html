@@ -19,6 +19,17 @@
       <p>Use "WASD" or Arrow Keys to Move</p>
       <p>Press "R" to reset player</p>
       <p>Press "Esc" to generate a new maze</p>
+      <label for="maze-size">Maze Size:</label>
+      <input
+        id="maze-size"
+        type="number"
+        min="5"
+        max="999"
+        step="2"
+        value="51"
+      />
+
+      <button id="generate-maze">Generate</button>
     </div>
     <script type="module" src="src/main.js"></script>
   </body>
