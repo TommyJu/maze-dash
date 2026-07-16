@@ -45,7 +45,7 @@ export class Game {
   handleGameWon() {
     alert("Maze Complete! 🎉");
     this.player.resetPosition();
-    this.maze.createMaze();
+    this.maze.createMaze(this.maze.size);
   }
 
   handleGameCommand(gameCommand) {
